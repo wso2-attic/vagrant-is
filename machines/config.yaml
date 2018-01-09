@@ -17,21 +17,20 @@ servers:
   -
     hostname: mysql
     box: mysql
-    ip: 192.168.100.2
+    ip: 172.28.128.3
     ram: 2048
     cpu: 1
-    provisioner_script: db/provisioner/db_provisioner.sh
   -
     hostname: identity-server
     box: wso2is
-    ip: 192.168.100.3
+    ip: 172.28.128.4
     ram: 2048
     cpu: 1
     provisioner_script: identity-server/provisioner/product_provisioner.sh
   -
     hostname: identity-server-analytics
     box: wso2is-analytics
-    ip: 192.168.100.4
+    ip: 172.28.128.5
     ram: 2048
     cpu: 1
     provisioner_script: identity-server-analytics/provisioner/product_provisioner.sh

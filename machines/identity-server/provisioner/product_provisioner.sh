@@ -21,6 +21,7 @@ WSO2_SERVER=wso2is
 WSO2_SERVER_VERSION=5.4.0
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
+NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 export JAVA_HOME
 
@@ -39,4 +40,4 @@ do
   [[ "${LOG_LINE}" == *"WSO2 Carbon started"* ]] && pkill tail
 done
 
-echo "Management console URL: https://192.168.100.3:9443/carbon"
+echo "Management console URL: https://${NODE_IP}:9443/carbon"

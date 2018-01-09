@@ -47,12 +47,17 @@ Vagrant.configure(2) do |config|
       end
 
       # configure shell provisioner
+      if !server['provisioner_script']
+        # if not defined, move to next server specification
+        next
+      end
+
       if server['provisioner_script_args']
         # if argument(s) have been defined to be passed to the shell script
-        server_config.vm.provision "shell", path: server["provisioner_script"], args: server["provisioner_script_args"]
+        server_config.vm.provision "shell", path: server['provisioner_script'], args: server['provisioner_script_args']
       else
         # if no argument(s) have been defined to be passed to the shell script
-        server_config.vm.provision "shell", path: server["provisioner_script"]
+        server_config.vm.provision "shell", path: server['provisioner_script']
       end
     end
   end
