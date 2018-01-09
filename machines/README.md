@@ -14,11 +14,13 @@ as Vagrant uses Oracle VM VirtualBox as the default provider.
 git clone https://github.com/wso2-incubator/vagrant-is.git
 ```
 
-##### 2. Move to `machines` folder.
+##### 2. Build and add the Vagrant boxes for external MySQL database, WSO2 Identity Server and WSO2 Identity Server Analytics using the box automation resources provided, [here](../../boxes).
+
+##### 3. Move to `machines` folder.
 
     cd machines
 
-##### 3. Spawn up the Vagrant setup.
+##### 4. Spawn up the Vagrant setup.
 
     vagrant up
 
