@@ -7,7 +7,7 @@ This repository contains the following resources:
 Resources which automate the Vagrant box creation process are contained here. Users can define
 box specifications based on which the Vagrant boxes are generated.
 
-- Vagrantfile for WSO2 Identity Server single node deployment with Analytics support
+- Vagrantfile for WSO2 Identity Server deployment with Analytics
 
-Vagrantfile resource which performs an automated deployment of WSO2 Identity Server single node
+Vagrantfile performs an automated deployment of WSO2 Identity Server single node
 with WSO2 Identity Server Analytics support.
