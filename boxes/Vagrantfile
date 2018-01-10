@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
       # define the base Vagrant box to be used
       server_config.vm.box = box['base_box']
       # define the virtual machine host name
-      server_config.vm.host_name = box['output_box_name']
+      server_config.vm.host_name = box['output_box']
 
       # setup network configurations for the virtual machine
       # use private networking

@@ -1,6 +1,6 @@
-# Automated Vagrant box generation
+# Vagrant box generation
 
-This section defines the procedure to build Vagrant boxes required for WSO2 Identity Server single node
+This section defines the procedure to build Vagrant boxes required for WSO2 Identity Server 5.4.0 single node
 deployment with Analytics support.
 
 Please note that in order to build these Vagrant boxes, you need to install
@@ -24,7 +24,9 @@ git clone https://github.com/wso2-incubator/vagrant-is.git
 
     ./build.sh
     
-##### 4. The created box files can be found in the output directory. In order to add a created box to the local Vagrant box cache use the `vagrant box add` command.
+##### 4. Add created box files to local Vagrant box cache.
+
+The created box files can be found in the output directory. In order to add a created box to the local Vagrant box cache use the `vagrant box add` command.
 
     vagrant box add <BOX_NAME> <BOX_FILE_PATH>
 

@@ -37,17 +37,17 @@ export DEBIAN_FRONTEND=noninteractive
 
 # check if the required software distributions have been added
 if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ]; then
-    echo "WSO2 server pack not found"
+    echo "WSO2 server pack not found. Please copy the ${WSO2_SERVER_PACK} to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
     exit 1
 fi
 
 if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ]; then
-    echo "JDK archive file not found"
+    echo "JDK archive file not found. Please copy the JDK archive file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
     exit 1
 fi
 
 if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ]; then
-    echo "JDK archive file not found"
+    echo "MySQL Connector JAR file not found. Please copy the MySQL Connector JAR file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
     exit 1
 fi
 
@@ -56,7 +56,7 @@ echo "Starting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} Vagrant box build proce
 # install utility software
 echo "Installing software utilities..."
 apt-get install unzip
-echo "Done."
+echo "Successfully installed software utilities"
 
 # set up Java
 echo "Setting up Java..."
@@ -64,19 +64,19 @@ if test ! -d ${JAVA_HOME}; then mkdir ${JAVA_HOME}; fi
 if test -d ${JAVA_HOME}; then
   tar -xf ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} -C ${JAVA_HOME} --strip-components=1
 fi
-echo "Done."
+echo "Successfully set up Java"
 
 # unpack the WSO2 product pack to the working directory
 echo "Setting up the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server..."
 if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
   unzip -q ${DEFAULT_MOUNT}/files/${WSO2_SERVER_PACK} -d ${WORKING_DIRECTORY}
 fi
-echo "Done."
+echo "Successfully set up ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server"
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
 
-# capture the exact version of the MySQL connector
+# capture the exact file name of the MySQL connector
 pushd ${SOFTWARE_DISTRIBUTIONS}
 MYSQL_CONNECTOR=$(ls ${MYSQL_CONNECTOR})
 popd
@@ -89,7 +89,7 @@ cp ${CONFIGURATIONS}/repository/conf/datasources/analytics-datasources.xml ${WOR
 cp ${CONFIGURATIONS}/repository/conf/datasources/master-datasources.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/datasources/master-datasources.xml
 cp ${CONFIGURATIONS}/repository/conf/registry.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/registry.xml
 cp ${CONFIGURATIONS}/repository/conf/user-mgt.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/user-mgt.xml
-echo "Done."
+echo "Successfully copied files with configuration changes to the server pack"
 
 # remove the APT cache
 apt-get clean
