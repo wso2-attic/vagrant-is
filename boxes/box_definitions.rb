@@ -25,7 +25,7 @@ boxnames=Array.new
 # loop through each box specification
 CONFIGURATIONS['boxes'].each do |box|
   # add box name to array of box names
-  boxnames.push box['output_box_name']
+  boxnames.push box['output_box']
 end
 
 puts boxnames

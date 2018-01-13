@@ -23,11 +23,10 @@ WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.4.0
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-MYSQL_CONNECTOR=mysql-connector-java-*-bin.jar
+MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java
 DEFAULT_USER=vagrant
@@ -75,21 +74,6 @@ echo "Successfully set up ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server"
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
-
-# capture the exact file name of the MySQL connector
-pushd ${SOFTWARE_DISTRIBUTIONS}
-MYSQL_CONNECTOR=$(ls ${MYSQL_CONNECTOR})
-popd
-
-
-# copy files with configuration changes
-echo "Copying the files with configuration changes to the server pack..."
-cp ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/${MYSQL_CONNECTOR}
-cp ${CONFIGURATIONS}/repository/conf/datasources/analytics-datasources.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/datasources/analytics-datasources.xml
-cp ${CONFIGURATIONS}/repository/conf/datasources/master-datasources.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/datasources/master-datasources.xml
-cp ${CONFIGURATIONS}/repository/conf/registry.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/registry.xml
-cp ${CONFIGURATIONS}/repository/conf/user-mgt.xml ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/user-mgt.xml
-echo "Successfully copied files with configuration changes to the server pack"
 
 # remove the APT cache
 apt-get clean

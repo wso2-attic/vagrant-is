@@ -39,14 +39,6 @@ apt-get update
 # install mysql
 apt-get -y install mysql-server
 
-# run product db script
-mysql -uroot -pwso2carbon -e "source /vagrant/mysql/scripts/mysql.sql"
-
-# grants root access to MySQL server from any host
-mysql -uroot -pwso2carbon -e "create user 'root'@'%' identified by 'wso2carbon';"
-mysql -uroot -pwso2carbon -e "grant all privileges on *.* to 'root'@'%' with grant option;"
-mysql -uroot -pwso2carbon -e "flush privileges;"
-
 # set the bind address from loopback address to all IPv4 addresses of the host
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mysql/my.cnf
 

@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   # loop through each server configuration specification
   CONFIGURATIONS['boxes'].each do |box|
     # define the virtual machine configurations
-    config.vm.define box['output_box_name'] do |server_config|
+    config.vm.define box['output_box'] do |server_config|
       # define the base Vagrant box to be used
       server_config.vm.box = box['base_box']
       # define the virtual machine host name
