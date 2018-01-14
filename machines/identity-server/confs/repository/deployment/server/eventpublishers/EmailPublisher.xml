@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventPublisher name="EmailPublisher" statistics="disable"
+  trace="disable" xmlns="http://wso2.org/carbon/eventpublisher">
+  <from streamName="id_gov_notify_stream" version="1.0.0"/>
+  <mapping customMapping="enable" type="text">
+    <inline>{{body}}{{footer}}</inline>
+  </mapping>
+  <to eventAdapterType="email">
+    <property name="email.address">{{send-to}}</property>
+    <property name="email.type">{{content-type}}</property>
+    <property name="email.subject">{{subject}}</property>
+  </to>
+</eventPublisher>

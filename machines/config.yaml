@@ -20,6 +20,7 @@ servers:
     ip: 172.28.128.3
     ram: 2048
     cpu: 1
+    provisioner_script: mysql/provisioner/db_provisioner.sh
   -
     hostname: identity-server
     box: wso2is

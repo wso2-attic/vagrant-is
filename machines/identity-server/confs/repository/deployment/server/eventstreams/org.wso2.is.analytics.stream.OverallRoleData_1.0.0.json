@@ -1,0 +1,46 @@
+{
+  "name": "org.wso2.is.analytics.stream.OverallRoleData",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "metaData": [
+    {
+      "name": "tenantId",
+      "type": "INT"
+    }
+  ],
+  "payloadData": [
+    {
+      "name": "action",
+      "type": "STRING"
+    },
+    {
+      "name": "roleName",
+      "type": "STRING"
+    },
+    {
+      "name": "newRoleName",
+      "type": "STRING"
+    },
+    {
+      "name": "newUsers",
+      "type": "STRING"
+    },
+    {
+      "name": "deletedUsers",
+      "type": "STRING"
+    },
+    {
+      "name": "permission",
+      "type": "STRING"
+    },
+    {
+      "name": "userstoreManager",
+      "type": "STRING"
+    },
+    {
+      "name": "actionHolder",
+      "type": "STRING"
+    }
+  ]
+}
