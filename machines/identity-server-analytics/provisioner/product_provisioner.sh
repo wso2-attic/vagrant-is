@@ -22,7 +22,7 @@ WSO2_SERVER_VERSION=5.4.0
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
 DEFAULT_MOUNT=/vagrant
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
+CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 # copy files with configuration changes

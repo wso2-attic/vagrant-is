@@ -13,10 +13,10 @@
             <description>The datasource used for analytics record store</description>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://172.28.128.3:3306/db?autoReconnect=true</url>
-                    <username>root</username>
+                    <url>jdbc:h2:repository/database/ANALYTICS_EVENT_STORE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</url>
+                    <username>wso2carbon</username>
                     <password>wso2carbon</password>
-                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <driverClassName>org.h2.Driver</driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <validationQuery>SELECT 1</validationQuery>
@@ -34,10 +34,10 @@
             <description>The datasource used for analytics record store</description>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://172.28.128.3:3306/db?autoReconnect=true</url>
-                    <username>root</username>
+                    <url>jdbc:h2:repository/database/ANALYTICS_PROCESSED_DATA_STORE;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</url>
+                    <username>wso2carbon</username>
                     <password>wso2carbon</password>
-                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <driverClassName>org.h2.Driver</driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <validationQuery>SELECT 1</validationQuery>

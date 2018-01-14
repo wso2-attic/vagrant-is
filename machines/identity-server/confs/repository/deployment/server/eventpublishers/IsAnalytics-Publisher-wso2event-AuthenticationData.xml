@@ -6,8 +6,9 @@
     <property name="username">admin</property>
     <property name="protocol">thrift</property>
     <property name="publishingMode">non-blocking</property>
-    <property name="receiverURL">tcp://172.28.128.5:7612</property>
-    <property name="authenticatorURL">ssl://172.28.128.5:7712</property>
+    <property name="publishTimeout">0</property>
+    <property name="receiverURL">tcp://172.28.128.3:7612</property>
+    <property name="authenticatorURL">ssl://172.28.128.3:7712</property>
     <property encrypted="false" name="password">admin</property>
   </to>
 </eventPublisher>
