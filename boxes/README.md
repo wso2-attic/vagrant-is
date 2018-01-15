@@ -3,9 +3,9 @@
 This section defines the procedure to build Vagrant boxes required for WSO2 Identity Server 5.4.0 single node
 deployment with Analytics support.
 
-Please note that in order to build these Vagrant boxes, you need to install
+Please note that in order to build these Vagrant boxes, you need to install Ruby and
 [Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html),
-as WSO2 Vagrant resources use Oracle VM VirtualBox, as the default provider.
+since, Vagrant uses Oracle VM VirtualBox as the default provider.
 
 ## How to build the Vagrant boxes
 

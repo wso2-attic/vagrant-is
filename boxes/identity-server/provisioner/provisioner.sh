@@ -23,7 +23,6 @@ WSO2_SERVER=wso2is
 WSO2_SERVER_VERSION=5.4.0
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
@@ -43,11 +42,6 @@ fi
 
 if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ]; then
     echo "JDK archive file not found. Please copy the JDK archive file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
-    exit 1
-fi
-
-if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ]; then
-    echo "MySQL Connector JAR file not found. Please copy the MySQL Connector JAR file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
     exit 1
 fi
 
@@ -72,11 +66,6 @@ if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
   unzip -q ${DEFAULT_MOUNT}/files/${WSO2_SERVER_PACK} -d ${WORKING_DIRECTORY}
 fi
 echo "Successfully set up ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server"
-
-# add the MySQL driver
-echo "Copying the MySQL driver to the server pack..."
-cp ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/${MYSQL_CONNECTOR}
-echo "Successfully copied the MySQL driver to the server pack."
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
