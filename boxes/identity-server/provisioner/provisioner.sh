@@ -74,8 +74,8 @@ chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
 apt-get clean
 
 # zero out the drive
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
+dd if=/dev/zero of=/dev/sdX
+rm -f /dev/sdX
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
