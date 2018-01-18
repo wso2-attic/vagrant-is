@@ -6,8 +6,8 @@ node with Analytics support.<br>
 ![Deployment architecture](deployment-architecture.png)
 
 Please note that in order to run these Vagrant resources use, you need to install
-[Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html),
-as Vagrant uses Oracle VM VirtualBox as the default provider.
+[Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
+since, Vagrant uses Oracle VM VirtualBox as the default provider.
 
 ## How to run the Vagrantfile
 

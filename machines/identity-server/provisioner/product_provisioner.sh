@@ -27,8 +27,11 @@ NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $
 
 # copy files with configuration changes
 echo "Copying the files with configuration changes to the server pack..."
-cp -TRv ${CONFIGURATIONS}/repository/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/
-cp -TRv ${CONFIGURATIONS}/repository/deployment/server/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/deployment/server/
+cp -TR ${CONFIGURATIONS}/repository/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/
+cp -a ${CONFIGURATIONS}/repository/components/dropins/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/dropins/
+cp -a ${CONFIGURATIONS}/repository/components/extensions/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/extensions/
+cp -a ${CONFIGURATIONS}/repository/components/lib/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/
+cp -TR ${CONFIGURATIONS}/repository/deployment/server/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/deployment/server/
 echo "Successfully copied the files."
 
 export JAVA_HOME
