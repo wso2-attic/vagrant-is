@@ -11,26 +11,26 @@ since, Vagrant uses Oracle VM VirtualBox as the default provider.
 
 ![Vagrant box build process](procedure.png)
 
-##### 1. Checkout this repository into your local machine using the following Git command.
+1. Checkout this repository into your local machine using the following Git command.
 ```
 git clone https://github.com/wso2-incubator/vagrant-is.git
 ```
-##### 2. Download
+2. Download
 [WSO2 Identity Server 5.4.0](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path. 
 
 Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
 
     ~/vagrantboxes/files/
 
-##### 3. Move to `boxes` folder.
+3. Move to `boxes` folder.
 
     cd boxes
 
-##### 4. Execute the build.sh shell script.
+4. Execute the build.sh shell script.
 
     ./build.sh
     
-##### 5. Add created box files to local Vagrant box cache.
+5. Add created box files to local Vagrant box cache.
 
 The created box files can be found in the output directory. In order to add a created box to the local Vagrant box cache use the `vagrant box add` command.
 
