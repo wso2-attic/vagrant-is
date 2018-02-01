@@ -32,7 +32,6 @@ cp -a ${CONFIGURATIONS}/repository/components/dropins/. ${WORKING_DIRECTORY}/${W
 cp -a ${CONFIGURATIONS}/repository/components/extensions/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/extensions/
 cp -a ${CONFIGURATIONS}/repository/components/lib/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/
 echo "Successfully copied the files."
-
 export JAVA_HOME
 
 # start the WSO2 product pack as a background service
