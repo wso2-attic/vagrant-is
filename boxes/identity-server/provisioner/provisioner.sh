@@ -70,7 +70,7 @@ echo "Successfully set up Java"
 echo "Setting up WUM..."
 if test ! -d ${WUM_HOME}; then mkdir ${WUM_HOME}; fi
 if test -d ${WUM_HOME}; then
-  tar -xzf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
+  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
   echo "Successfully set up WUM"
 fi
 
