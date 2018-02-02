@@ -29,5 +29,3 @@ for box in ${OUTPUT}
 do
     vagrant package $box --output output/$box.box
 done
-
-vagrant destroy -f
