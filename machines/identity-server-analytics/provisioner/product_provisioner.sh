@@ -20,10 +20,25 @@
 WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.4.0
 WORKING_DIRECTORY=/home/vagrant
+WUM_WORKING_DIRECTORY=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
 JAVA_HOME=/opt/java/
+PATH=$PATH:/usr/local/wum/bin
 DEFAULT_MOUNT=/vagrant
 CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+
+export PATH
+
+#setting up the server
+if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
+  unzip -q ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK} -d ${WORKING_DIRECTORY}
+  echo "Successfully set up ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server"
+fi
+
+#moving MySQL driver
+echo "Copying the MySQL driver to the server pack..."
+cp ${WORKING_DIRECTORY}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/${MYSQL_CONNECTOR}
+echo "Successfully copied the MySQL driver to the server pack."
 
 # copy files with configuration changes
 echo "Copying the files with configuration changes to the server pack..."
