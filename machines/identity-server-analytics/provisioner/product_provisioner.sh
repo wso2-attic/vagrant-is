@@ -20,7 +20,6 @@
 WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.4.0
 WORKING_DIRECTORY=/home/vagrant
-WUM_WORKING_DIRECTORY=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
 JAVA_HOME=/opt/java/
 PATH=$PATH:/usr/local/wum/bin
 DEFAULT_MOUNT=/vagrant
