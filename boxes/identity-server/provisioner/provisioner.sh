@@ -28,7 +28,6 @@ SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java
-WUM_HOME=/usr/local
 DEFAULT_USER=vagrant
 
 # operate in anti-fronted mode with no user interaction
