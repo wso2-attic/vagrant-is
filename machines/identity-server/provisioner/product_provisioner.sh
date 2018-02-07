@@ -23,12 +23,9 @@ WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
-PATH=$PATH:/usr/local/wum/bin
 DEFAULT_MOUNT=/vagrant
 CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
-
-export PATH
 
 #setting up the server
 if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
