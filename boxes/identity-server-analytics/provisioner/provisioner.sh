@@ -23,7 +23,6 @@ WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.4.0
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 WORKING_DIRECTORY=/home/vagrant
@@ -59,12 +58,12 @@ if test -d ${JAVA_HOME}; then
 fi
 echo "Successfully set up Java"
 
-# unpack the WSO2 product pack to the working directory
-echo "Setting up the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server..."
+# moving the WSO2 product pack to the working directory
+echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}..."
 if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
-  unzip -q ${DEFAULT_MOUNT}/files/${WSO2_SERVER_PACK} -d ${WORKING_DIRECTORY}
+  mv ${DEFAULT_MOUNT}/files/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}
+  echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}"
 fi
-echo "Successfully set up ${WSO2_SERVER}-${WSO2_SERVER_VERSION} server"
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
