@@ -23,7 +23,6 @@ WSO2_SERVER=wso2is
 WSO2_SERVER_VERSION=5.4.0
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
@@ -46,10 +45,6 @@ if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ]; then
     exit 1
 fi
 
-if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} ]; then
-    echo "WUM archive file not found. Box will not contain WUM support."
-fi
-
 echo "Starting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} Vagrant box build process..."
 
 # install utility software
@@ -64,14 +59,6 @@ if test -d ${JAVA_HOME}; then
   tar -xf ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} -C ${JAVA_HOME} --strip-components=1
 fi
 echo "Successfully set up Java"
-
-# set up WUM
-echo "Setting up WUM..."
-if test ! -d ${WUM_HOME}; then mkdir ${WUM_HOME}; fi
-if test -d ${WUM_HOME}; then
-  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
-  echo "Successfully set up WUM"
-fi
 
 # moving the WSO2 product pack to the working directory
 echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}..."
