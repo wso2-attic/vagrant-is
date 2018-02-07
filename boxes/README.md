@@ -13,7 +13,7 @@ since, Vagrant uses Oracle VM VirtualBox as the default provider.
 
 ##### 1. Checkout this repository into your local machine using the following Git command.
 ```
-git clone https://github.com/wso2-incubator/vagrant-is.git
+git clone https://github.com/wso2/vagrant-is.git
 ```
 
 ##### 2. Move to `boxes` folder.
