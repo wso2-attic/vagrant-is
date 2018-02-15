@@ -1,13 +1,36 @@
-# WSO2 Identity Server Vagrant Resources
+# Vagrantfile for WSO2 Identity Server
 
-This repository contains following resources:
+This section defines the procedure to execute Vagrant resources for a setup of WSO2 Identity Server single
+node with Analytics support.<br>
 
-- Resources to generate Vagrant boxes for WSO2 Identity Server with Analytics
+![Deployment architecture](deployment-architecture.png)
 
-  Resources for creating Vagrant boxes are contained here. Users can define box specifications
-  based on which the Vagrant boxes are generated.
+Please note that in order to run these Vagrant resources use, you need to install
+[Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
+since, Vagrant uses Oracle VM VirtualBox as the default provider. In addition, you need to download the official JDBC driver
+for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 
-- Vagrantfile for WSO2 Identity Server deployment with Analytics
+## How to run the Vagrantfile
 
-  Vagrantfile performs an automated deployment of WSO2 Identity Server single node with
-  WSO2 Identity Server Analytics support.
+1. Checkout this repository into your local machine using the following Git command.
+
+```
+    git clone https://github.com/wso2/vagrant-is.git
+```
+
+2. Move to `vagrant-is` folder.
+
+```
+    cd vagrant-is
+```
+
+3. Spawn up the Vagrant setup.
+
+```
+    vagrant up
+```
+4. Access the Identity Server via the URL given below.
+
+```
+    https://172.28.128.4:9443/carbon
+```
