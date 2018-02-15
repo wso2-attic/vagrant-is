@@ -23,11 +23,8 @@ WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.4.1
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-<<<<<<< HEAD
-MYSQL_CONNECTOR=mysql-connector-java-5.1.45-bin.jar
+MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
-=======
->>>>>>> 0a9deb0c3745c48378b825c79725662f5bb08bbe
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 WORKING_DIRECTORY=/home/vagrant
