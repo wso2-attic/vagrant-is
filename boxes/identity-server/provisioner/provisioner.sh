@@ -20,14 +20,13 @@
 
 # set variables
 WSO2_SERVER=wso2is
-WSO2_SERVER_VERSION=5.4.0
+WSO2_SERVER_VERSION=5.4.1
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
+MYSQL_CONNECTOR=mysql-connector-java-5.1.45-bin.jar
 WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
-
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java
 WUM_HOME=/usr/local
@@ -75,11 +74,14 @@ if test -d ${WUM_HOME}; then
 fi
 
 # moving the WSO2 product pack to the working directory
-echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}..."
-if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
-  mv ${DEFAULT_MOUNT}/files/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}
-  echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}"
-fi
+echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}"
+mv ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}/
+echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}"
+
+# add the MySQL driver
+echo "Copying the MySQL driver to the ${WORKING_DIRECTORY}"
+mv ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/
+echo "Successfully copied the MySQL driver to the server pack."
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}

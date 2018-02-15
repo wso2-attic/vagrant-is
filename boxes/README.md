@@ -16,7 +16,7 @@ since, Vagrant uses Oracle VM VirtualBox as the default provider.
 git clone https://github.com/wso2-incubator/vagrant-is.git
 ```
 2. Download
-[WSO2 Identity Server 5.4.0](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path. 
+[WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path. 
 
 Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
 
