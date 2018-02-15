@@ -12,7 +12,6 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 
 ## How to run the Vagrantfile
 
-
 1. Checkout this repository into your local machine using the following Git command.
 
 ```
@@ -37,4 +36,3 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 ```
     https://172.28.128.4:9443/carbon
 ```
-
