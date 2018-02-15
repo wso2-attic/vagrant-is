@@ -17,14 +17,14 @@
 # ------------------------------------------------------------------------
 
 # set variables
-WSO2_SERVER=wso2is
-WSO2_SERVER_VERSION=5.4.0
+WSO2_SERVER=wso2is-analytics
+WSO2_SERVER_VERSION=5.4.1
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
 DEFAULT_MOUNT=/vagrant
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
+CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 #setting up the server
@@ -44,9 +44,7 @@ cp -Tr ${CONFIGURATIONS}/repository/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${
 cp -a ${CONFIGURATIONS}/repository/components/dropins/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/dropins/
 cp -a ${CONFIGURATIONS}/repository/components/extensions/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/extensions/
 cp -a ${CONFIGURATIONS}/repository/components/lib/. ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/
-cp -Tr ${CONFIGURATIONS}/repository/deployment/server/eventpublishers/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/deployment/server/eventpublishers/
 echo "Successfully copied the files."
-
 export JAVA_HOME
 
 # start the WSO2 product pack as a background service
@@ -64,4 +62,4 @@ do
   [[ "${LOG_LINE}" == *"WSO2 Carbon started"* ]] && pkill tail
 done
 
-echo "Management console URL: https://${NODE_IP}:9443/carbon"
+echo "Management console URL: https://${NODE_IP}:9444/carbon"
