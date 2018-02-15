@@ -18,9 +18,15 @@
 
 # set variables
 WSO2_SERVER=wso2is
+<<<<<<< HEAD
 WSO2_SERVER_VERSION=5.4.1
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
 MYSQL_CONNECTOR=mysql-connector-java-5.1.45-bin.jar
+=======
+WSO2_SERVER_VERSION=5.4.0
+WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
+MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
+>>>>>>> 0a9deb0c3745c48378b825c79725662f5bb08bbe
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
 DEFAULT_MOUNT=/vagrant
