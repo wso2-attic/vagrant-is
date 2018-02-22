@@ -12,25 +12,31 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 
 ## How to run the Vagrantfile
 
-1. Checkout this repository into your local machine using the following Git command.
+1. Follow the instructions in this repository to build the WSO2 Identity Server 5.4.1, WSO2 Identity Server Analytics 5.4.1, and MySQL Vagrant boxes.
 
 ```
-    git clone https://github.com/wso2/vagrant-is.git
+	https://github.com/wso2/vagrant-boxes
 ```
 
-2. Move to `vagrant-is` folder.
+2. Checkout this repository into your local machine using the following Git command.
 
 ```
-    cd vagrant-is
+	git clone https://github.com/wso2/vagrant-is.git
 ```
 
-3. Spawn up the Vagrant setup.
+3. Move to `vagrant-is` folder.
 
 ```
-    vagrant up
+	cd vagrant-is
 ```
-4. Access the Identity Server via the URL given below.
+
+4. Spawn up the Vagrant setup.
 
 ```
-    https://172.28.128.4:9443/carbon
+	vagrant up
+```
+5. Access the Identity Server via the URL given below.
+
+```
+	https://172.28.128.4:9443/carbon
 ```
