@@ -21,22 +21,22 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 2. Checkout this repository into your local machine using the following Git command.
 
 ```
-    git clone https://github.com/wso2/vagrant-is.git
+	git clone https://github.com/wso2/vagrant-is.git
 ```
 
 3. Move to `vagrant-is` folder.
 
 ```
-    cd vagrant-is
+	cd vagrant-is
 ```
 
 4. Spawn up the Vagrant setup.
 
 ```
-    vagrant up
+	vagrant up
 ```
 5. Access the Identity Server via the URL given below.
 
 ```
-    https://172.28.128.4:9443/carbon
+	https://172.28.128.4:9443/carbon
 ```
