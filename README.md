@@ -37,13 +37,17 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 ```
 5. Access the Identity Server and Identity Server Analytics via the URLs given below.
 
+
 		Identity Server
+
 
 ```
 	https://localhost:9443/carbon
 ```
 
+
 		Identity Server Analytics
+		
 
 ```
 	https://localhost:9444/carbon
