@@ -25,6 +25,8 @@ servers:
     hostname: identity-server
     box: wso2is
     ip: 172.28.128.4
+    ports:
+      -9443
     ram: 2048
     cpu: 1
     provisioner_script: identity-server/provisioner/product_provisioner.sh
@@ -32,6 +34,8 @@ servers:
     hostname: identity-server-analytics
     box: wso2is-analytics
     ip: 172.28.128.5
+    ports:
+      -9444
     ram: 2048
     cpu: 1
     provisioner_script: identity-server-analytics/provisioner/product_provisioner.sh

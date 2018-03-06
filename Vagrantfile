@@ -1,4 +1,4 @@
-# Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+# Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,14 @@
 
 require 'yaml'
 require 'fileutils'
+require 'uri'
+require 'erb'
+
+$stdout.print "login: "
+USERNAME = $stdin.gets.chomp
+$stdout.print "password: "
+PASSWORD = $stdin.noecho(&:gets).chomp
+TOKEN = [ERB::Util.url_encode(USERNAME), PASSWORD].join(':')
 
 # load server configurations from YAML file
 CONFIGURATIONS = YAML.load_file('config.yaml')
@@ -30,9 +38,20 @@ Vagrant.configure(2) do |config|
       # define the virtual machine host name
       server_config.vm.host_name = server['hostname']
 
+      #generate the url
+      url = "https://"+TOKEN+"@vagrant.wso2.com/boxes/"+server['box']+".box"
+
+      server_config.vm.box_url = url
       # setup network configurations for the virtual machine
       # use private networking (recommended for multi-machine scenarios)
       server_config.vm.network :private_network, ip: server['ip']
+
+      #forwarding ports to access the server via localhost
+      if server['ports']
+        server['ports'].each do |port|
+          server_config.vm.network "forwarded_port", guest: port, host: port, guest_ip: server['ip']
+        end
+      end
 
       memory = server['ram'] ? server['ram'] : 2048
       cpu = server['cpu'] ? server['cpu'] : 1

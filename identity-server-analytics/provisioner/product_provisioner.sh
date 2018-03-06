@@ -31,6 +31,9 @@ DEFAULT_MOUNT=/vagrant
 CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
+# operate in anti-fronted mode with no user interaction
+export DEBIAN_FRONTEND=noninteractive
+
 # install utility software
 echo "Installing software utilities."
 apt-get install unzip

@@ -35,8 +35,16 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 ```
 	vagrant up
 ```
-5. Access the Identity Server via the URL given below.
+5. Access the Identity Server and Identity Server Analytics via the URLs given below.
+
+		Identity Server
 
 ```
-	https://172.28.128.4:9443/carbon
+	https://localhost:9443/carbon
+```
+
+		Identity Server Analytics
+
+```
+	https://localhost:9444/carbon
 ```
