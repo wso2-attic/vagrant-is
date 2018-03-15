@@ -23,7 +23,7 @@ $stdout.print "login: "
 USERNAME = $stdin.gets.chomp
 $stdout.print "password: "
 PASSWORD = $stdin.noecho(&:gets).chomp
-TOKEN = [ERB::Util.url_encode(USERNAME), PASSWORD].join(':')
+TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 
 # load server configurations from YAML file
 CONFIGURATIONS = YAML.load_file('config.yaml')
