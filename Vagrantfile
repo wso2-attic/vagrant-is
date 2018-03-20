@@ -29,6 +29,10 @@ TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':
 # load server configurations from YAML file
 CONFIGURATIONS = YAML.load_file('config.yaml')
 Vagrant.configure(2) do |config|
+
+  # changing default timeout from 300 to 1000 seconds
+  config.vm.boot_timeout = 1000
+
   # loop through each server configuration specification
   CONFIGURATIONS['servers'].each do |server|
     # define the virtual machine configurations
