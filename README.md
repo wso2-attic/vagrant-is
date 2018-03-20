@@ -1,5 +1,9 @@
 # Vagrantfile for WSO2 Identity Server
 
+In order to use Vagrant boxes, you will need an active subscription from WSO2 since the Vagrant boxes hosted at vagrant.wso2.com contains the latest updates and fixes to WSO2 Identity Server. You can sign up for a Free Trial Subscription [here](https://wso2.com/free-trial-subscription)
+
+If you wish to use the Vagrant boxes without updates, please build them from [here](https://github.com/wso2/vagrant-boxes)
+
 This section defines the procedure to execute Vagrant resources for a setup of WSO2 Identity Server single
 node with Analytics support.<br>
 
