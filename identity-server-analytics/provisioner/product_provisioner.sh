@@ -27,8 +27,7 @@ WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
 WUM_HOME=/usr/local
 WUM_PATH=PATH=$PATH:/usr/local/wum/bin
-DEFAULT_MOUNT=/vagrant
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server-analytics/confs
+CONFIGURATIONS=${WORKING_DIRECTORY}/identity-server-analytics/confs
 NODE_IP=$(/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 # operate in anti-fronted mode with no user interaction
@@ -76,6 +75,9 @@ echo "Successfully copied the files."
 
 export JAVA_HOME
 export WUM_PATH
+
+echo "Removing configurations directories."
+rm -rf ${CONFIGURATIONS}
 
 # start the WSO2 product pack as a background service
 echo "Starting ${WSO2_SERVER}-${WSO2_SERVER_VERSION}..."
