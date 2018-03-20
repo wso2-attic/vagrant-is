@@ -21,6 +21,7 @@ servers:
     ram: 2048
     cpu: 1
     provisioner_script: mysql/provisioner/db_provisioner.sh
+    conf_dir: mysql/scripts
   -
     hostname: identity-server
     box: wso2is
@@ -30,6 +31,7 @@ servers:
     ram: 2048
     cpu: 1
     provisioner_script: identity-server/provisioner/product_provisioner.sh
+    conf_dir: identity-server/confs
   -
     hostname: identity-server-analytics
     box: wso2is-analytics
@@ -39,3 +41,4 @@ servers:
     ram: 2048
     cpu: 1
     provisioner_script: identity-server-analytics/provisioner/product_provisioner.sh
+    conf_dir: identity-server-analytics/confs

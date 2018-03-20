@@ -26,6 +26,8 @@ $stdout.print "password: "
 PASSWORD = $stdin.noecho(&:gets).chomp
 TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 
+FILES_PATH = "./"
+DEFAULT_MOUNT = "/home/vagrant/"
 # load server configurations from YAML file
 CONFIGURATIONS = YAML.load_file('config.yaml')
 Vagrant.configure(2) do |config|
@@ -72,7 +74,9 @@ Vagrant.configure(2) do |config|
         vb.customize ['modifyvm', :id, '--memory', memory]
         vb.customize ['modifyvm', :id, '--cpus', cpu]
       end
-
+      if server['conf_dir']
+        server_config.vm.provision "file", source: FILES_PATH + server['conf_dir'], destination: DEFAULT_MOUNT + server['conf_dir']
+      end
       # configure shell provisioner
       if !server['provisioner_script']
         # if not defined, move to next server specification
