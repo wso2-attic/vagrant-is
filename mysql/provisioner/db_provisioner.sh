@@ -35,3 +35,6 @@ echo "Grant access to the user..."
 mysql -u${DB_USER} -p${DB_PASSWORD} -e "grant all privileges on *.* to 'root'@'%' with grant option;"
 mysql -u${DB_USER} -p${DB_PASSWORD} -e "flush privileges;"
 echo "Successfully granted access to the user."
+
+echo "Removing configurations directories."
+rm -rf ${WORKING_DIRECTORY}/mysql

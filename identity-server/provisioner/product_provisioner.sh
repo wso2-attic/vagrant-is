@@ -78,6 +78,9 @@ echo "Successfully copied the files."
 export JAVA_HOME
 export WUM_PATH
 
+echo "Removing configurations directories."
+rm -rf ${CONFIGURATIONS}
+
 # start the WSO2 product pack as a background service
 echo "Starting ${WSO2_SERVER}-${WSO2_SERVER_VERSION}..."
 sh ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/bin/wso2server.sh start

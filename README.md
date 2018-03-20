@@ -19,23 +19,26 @@ for MySQL, [Connector/J](https://dev.mysql.com/downloads/connector/j/5.1.html).
 1. Checkout this repository into your local machine using the following Git command.
 
 ```
-	git clone https://github.com/wso2/vagrant-is.git
+git clone https://github.com/wso2/vagrant-is.git
 ```
+>If you are to try out an already released zip of this repo, please ignore this 1st step.
 
 2. Move to `vagrant-is` folder.
 
 ```
-	cd vagrant-is
+cd vagrant-is
 ```
+>If you are to try out an already released zip of this repo, please ignore this 2nd step also. Instead, extract the zip file and directly browse to `vagrant-is-<released-version>` folder.
+
+>If you are to try out an already released tag, after executing 2nd step, checkout the relevant tag, i.e. for example: <br> git checkout tags/v5.4.1.4 and continue below steps.
 
 3. Spawn up the Vagrant setup.
 
 ```
-	vagrant up
+vagrant up
 ```
 4. Access the Identity Server and Identity Server Analytics via the URLs given below.
 
 ```
-	For Identity Server - https://localhost:9443/carbon
-	For Identity Server Analytics - https://localhost:9444/carbon
-```
+For Identity Server - https://localhost:9443/carbon
+For Identity Server Analytics - https://localhost:9444/carbon
