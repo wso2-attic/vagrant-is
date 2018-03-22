@@ -15,7 +15,7 @@
 ---
 servers:
   -
-    hostname: mysql
+    hostname: wso2-mysql
     box: wso2-mysql
     ip: 172.28.128.3
     ram: 2048
@@ -23,7 +23,7 @@ servers:
     provisioner_script: mysql/provisioner/db_provisioner.sh
     conf_dir: mysql/scripts
   -
-    hostname: identity-server
+    hostname: wso2is
     box: wso2is
     ip: 172.28.128.4
     ports:
@@ -33,7 +33,7 @@ servers:
     provisioner_script: identity-server/provisioner/product_provisioner.sh
     conf_dir: identity-server/confs
   -
-    hostname: identity-server-analytics
+    hostname: wso2is-analytics
     box: wso2is-analytics
     ip: 172.28.128.5
     ports:
