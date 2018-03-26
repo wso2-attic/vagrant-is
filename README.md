@@ -7,7 +7,7 @@ If you wish to use the Vagrant boxes without updates, please build them from [he
 This section defines the procedure to execute Vagrant resources for a setup of WSO2 Identity Server single
 node with Analytics support.<br>
 
-![Deployment architecture](deployment-architecture.png)
+![Deployment architecture](deployment-architecture.jpg)
 
 Please note that in order to run these Vagrant resources use, you need to install
 [Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
