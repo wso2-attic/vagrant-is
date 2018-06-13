@@ -25,7 +25,6 @@
             </AdminUser>
             <EveryOneRoleName>everyone</EveryOneRoleName> <!-- By default users in this role sees the registry root -->
             <Property name="isCascadeDeleteEnabled">true</Property>
- <Property name="initializeNewClaimManager">true</Property>
             <Property name="dataSource">jdbc/WSO2UM_DB</Property>
         </Configuration>
 
@@ -51,9 +50,9 @@
             <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be within 5 to 30 characters</Property>
             <Property name="RolenameJavaRegEx">^[\S]{3,30}$</Property>
             <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
-            <Property name="CaseInsensitiveUsername">false</Property>
+            <Property name="CaseInsensitiveUsername">true</Property>
             <Property name="SCIMEnabled">false</Property>
-            <Property name="IsBulkImportSupported">false</Property>
+            <Property name="IsBulkImportSupported">true</Property>
             <Property name="PasswordDigest">SHA-256</Property>
             <Property name="StoreSaltedPassword">true</Property>
             <Property name="MultiAttributeSeparator">,</Property>
@@ -143,7 +142,7 @@
             <Property name="RolenameJavaRegEx">[a-zA-Z0-9._\-|//]{3,30}$</Property>
             <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
             <Property name="SCIMEnabled">false</Property>
-            <Property name="IsBulkImportSupported">false</Property>
+            <Property name="IsBulkImportSupported">true</Property>
             <Property name="EmptyRolesAllowed">true</Property>
             <Property name="PasswordHashMethod">PLAIN_TEXT</Property>
             <Property name="MultiAttributeSeparator">,</Property>
@@ -168,7 +167,7 @@
              service password formats. In case if user core cache domain is needed to identify uniquely set property
              <Property name="UserCoreCacheIdentifier">domain</Property>
         -->
-        <!--UserStoreManager class="org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager">
+        <!--ISUserStoreManager class="org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager">
             <Property name="TenantManager">org.wso2.carbon.user.core.tenant.CommonHybridLDAPTenantManager</Property>
             <Property name="ConnectionURL">ldap://localhost:${Ports.EmbeddedLDAP.LDAPServerPort}</Property>
             <Property name="ConnectionName">uid=admin,ou=system</Property>
@@ -198,7 +197,7 @@
             <Property name="RolenameJavaRegEx">[a-zA-Z0-9._\-|//]{3,30}$</Property>
             <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
             <Property name="SCIMEnabled">true</Property>
-            <Property name="IsBulkImportSupported">false</Property>
+            <Property name="IsBulkImportSupported">true</Property>
             <Property name="EmptyRolesAllowed">true</Property>
             <Property name="PasswordHashMethod">PLAIN_TEXT</Property>
             <Property name="MultiAttributeSeparator">,</Property>
@@ -211,7 +210,7 @@
             <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="ReadTimeout"/>
             <Property name="RetryAttempts"/>
-        </UserStoreManager-->
+        </ISUserStoreManager-->
 
         <AuthorizationManager class="org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager">
             <Property name="AdminRoleManagementPermissions">/permission</Property>
