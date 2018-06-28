@@ -1,11 +1,11 @@
 <datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
-
+  
     <providers>
         <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
     </providers>
-
+  
     <datasources>
-
+      
         <datasource>
             <name>WSO2_CARBON_DB</name>
             <description>The datasource used for registry and user manager</description>
@@ -14,7 +14,7 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://172.28.128.3:3306/wso2is?autoReconnect=true&amp;useSSL=false</url>
+                    <url>jdbc:mysql://172.28.128.3:3306/wso2is?autoReconnect=true</url>
                     <username>root</username>
                     <password>wso2carbon</password>
                     <driverClassName>com.mysql.jdbc.Driver</driverClassName>
@@ -36,7 +36,7 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
-                    <url>jdbc:mysql://172.28.128.3:3306/wso2um_db?autoReconnect=true&amp;useSSL=false</url>
+                    <url>jdbc:mysql://172.28.128.3:3306/wso2um_db?autoReconnect=true</url>
                     <username>root</username>
                     <password>wso2carbon</password>
                     <driverClassName>com.mysql.jdbc.Driver</driverClassName>
@@ -62,6 +62,7 @@
             </jndiConfig>
             <definition type="RDBMS">
                 <configuration>
+
                     <defaultAutoCommit></defaultAutoCommit>
                     <defaultReadOnly></defaultReadOnly>
                     <defaultTransactionIsolation>NONE|READ_COMMITTED|READ_UNCOMMITTED|REPEATABLE_READ|SERIALIZABLE</defaultTransactionIsolation>
@@ -72,12 +73,14 @@
                     <maxIdle></maxIdle>
                     <initialSize></initialSize>
                     <maxWait></maxWait>
+
                     <dataSourceClassName>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</dataSourceClassName>
                     <dataSourceProps>
                         <property name="url">jdbc:mysql://localhost:3306/Test1</property>
                         <property name="user">root</property>
                         <property name="password">123</property>
                     </dataSourceProps>
+
                 </configuration>
             </definition>
         </datasource-->
