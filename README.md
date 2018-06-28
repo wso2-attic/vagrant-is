@@ -30,7 +30,7 @@ cd vagrant-is
 ```
 >If you are to try out an already released zip of this repo, please ignore this 2nd step also. Instead, extract the zip file and directly browse to `vagrant-is-<released-version>` folder.
 
->If you are to try out an already released tag, after executing 2nd step, checkout the relevant tag, i.e. for example: <br> git checkout tags/v5.6.0.1 and continue below steps.
+>If you are to try out an already released tag, after executing 2nd step, checkout the relevant tag, i.e. for example: <br> git checkout tags/v5.5.0.1 and continue below steps.
 
 3. Spawn up the Vagrant setup.
 
