@@ -24,7 +24,7 @@ MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
-CONFIGURATIONS=${WORKING_DIRECTORY}/identity-server-analytics/confs
+CONFIGURATIONS=${WORKING_DIRECTORY}/identity-server-analytics-dashboard/confs
 
 # operate in anti-fronted mode with no user interaction
 export DEBIAN_FRONTEND=noninteractive
@@ -50,12 +50,12 @@ fi
 
 #moving MySQL driver
 echo "Copying the MySQL driver to the server pack..."
-cp ${WORKING_DIRECTORY}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/components/lib/${MYSQL_CONNECTOR}
+cp ${WORKING_DIRECTORY}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/lib/${MYSQL_CONNECTOR}
 echo "Successfully copied the MySQL driver to the server pack."
 
 # copy files with configuration changes
 echo "Copying the files with configuration changes to the server pack..."
-cp -Trv ${CONFIGURATIONS}/repository/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/
+cp -Trv ${CONFIGURATIONS}/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/conf/
 echo "Successfully copied the files."
 
 export JAVA_HOME
@@ -65,17 +65,17 @@ rm -rf ${CONFIGURATIONS}
 
 # start the WSO2 product pack as a background service
 echo "Starting ${WSO2_SERVER}-${WSO2_SERVER_VERSION}..."
-sh ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/bin/wso2server.sh start
+nohup ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/wso2/dashboard/bin/carbon.sh &
 
 sleep 10
 
 # tail the WSO2 product server startup logs until the server startup confirmation is logged
-tail -f ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/logs/wso2carbon.log | while read LOG_LINE
+tail -f ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/wso2/dashboard/logs/carbon.log | while read LOG_LINE
 do
   # echo each log line
   echo "${LOG_LINE}"
   # once the log line with WSO2 Carbon server start confirmation was logged, kill the started tail process
-  [[ "${LOG_LINE}" == *"WSO2 Carbon started"* ]] && pkill tail
+  [[ "${LOG_LINE}" == *"WSO2 Analytics Identity Server started"* ]] && pkill tail
 done
 
-echo "Management console URL: https://localhost:9444/carbon"
+echo "Management console URL: https://localhost:9643/portal"
