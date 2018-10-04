@@ -17,15 +17,14 @@
 # ------------------------------------------------------------------------
 
 # set variables
-WSO2_SERVER=wso2is
+WSO2_SERVER=wso2is-analytics
 WSO2_SERVER_VERSION=5.7.0
-WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java/
-CONFIGURATIONS=${WORKING_DIRECTORY}/identity-server/confs
+CONFIGURATIONS=${WORKING_DIRECTORY}/identity-server-analytics/confs
 
 # operate in anti-fronted mode with no user interaction
 export DEBIAN_FRONTEND=noninteractive
@@ -57,7 +56,6 @@ echo "Successfully copied the MySQL driver to the server pack."
 # copy files with configuration changes
 echo "Copying the files with configuration changes to the server pack..."
 cp -Trv ${CONFIGURATIONS}/repository/conf/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/conf/
-cp -Trv ${CONFIGURATIONS}/repository/deployment/server/eventpublishers/ ${WORKING_DIRECTORY}/${WSO2_SERVER}-${WSO2_SERVER_VERSION}/repository/deployment/server/eventpublishers/
 echo "Successfully copied the files."
 
 export JAVA_HOME
@@ -80,4 +78,4 @@ do
   [[ "${LOG_LINE}" == *"WSO2 Carbon started"* ]] && pkill tail
 done
 
-echo "Management console URL: https://localhost:9443/carbon"
+echo "Management console URL: https://localhost:9444/carbon"
