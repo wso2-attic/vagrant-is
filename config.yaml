@@ -33,12 +33,22 @@ servers:
     provisioner_script: identity-server/provisioner/product_provisioner.sh
     conf_dir: identity-server/confs
   -
-    hostname: wso2is-analytics
-    box: wso2is-analytics
+    hostname: wso2is-analytics-dashboard
+    box: wso2is-analytics-dashboard
     ip: 172.28.128.5
+    ports:
+      - 9643
+    ram: 2048
+    cpu: 1
+    provisioner_script: identity-server-analytics-dashboard/provisioner/product_provisioner.sh
+    conf_dir: identity-server-analytics-dashboard/confs
+  -
+    hostname: wso2is-analytics-worker
+    box: wso2is-analytics-worker
+    ip: 172.28.128.6
     ports:
       - 9444
     ram: 2048
     cpu: 1
-    provisioner_script: identity-server-analytics/provisioner/product_provisioner.sh
-    conf_dir: identity-server-analytics/confs
+    provisioner_script: identity-server-analytics-worker/provisioner/product_provisioner.sh
+    conf_dir: identity-server-analytics-worker/confs
