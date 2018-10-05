@@ -19,14 +19,14 @@
 
 <eventPublisher name="IsAnalytics-Publisher-wso2event-RoleData" statistics="disable" trace="disable"
                 xmlns="http://wso2.org/carbon/eventpublisher">
-  <from streamName="org.wso2.is.analytics.stream.OverallRoleData" version="1.0.0"/>
-  <mapping customMapping="disable" type="wso2event"/>
-  <to eventAdapterType="wso2event">
-    <property name="username">admin</property>
-    <property name="protocol">thrift</property>
-    <property name="publishingMode">non-blocking</property>
-    <property name="publishTimeout">0</property>
-    <property name="receiverURL">tcp://172.28.128.5:7612</property>
-    <property encrypted="true" name="password">admin</property>
-  </to>
+    <from streamName="org.wso2.is.analytics.stream.OverallRoleData" version="1.0.0"/>
+    <mapping customMapping="disable" type="wso2event"/>
+    <to eventAdapterType="wso2event">
+        <property name="username">admin</property>
+        <property name="protocol">thrift</property>
+        <property name="publishingMode">non-blocking</property>
+        <property name="publishTimeout">0</property>
+        <property name="receiverURL">tcp://172.28.128.6:7612</property>
+        <property encrypted="false" name="password">admin</property>
+    </to>
 </eventPublisher>

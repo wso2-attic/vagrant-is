@@ -7,8 +7,6 @@ If you wish to use the Vagrant boxes without updates, please build them from [he
 This section defines the procedure to execute Vagrant resources for a setup of WSO2 Identity Server single
 node with Analytics support.<br>
 
-![Deployment architecture](deployment-architecture.jpg)
-
 Please note that in order to run these Vagrant resources use, you need to install
 [Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html)
 since, Vagrant uses Oracle VM VirtualBox as the default provider. In addition, you need to download the official JDBC driver
@@ -30,7 +28,7 @@ cd vagrant-is
 ```
 >If you are to try out an already released zip of this repo, please ignore this 2nd step also. Instead, extract the zip file and directly browse to `vagrant-is-<released-version>` folder.
 
->If you are to try out an already released tag, after executing 2nd step, checkout the relevant tag, i.e. for example: <br> git checkout tags/v5.6.0.1 and continue below steps.
+>If you are to try out an already released tag, after executing 2nd step, checkout the relevant tag, i.e. for example: <br> git checkout tags/v5.7.0.1 and continue below steps.
 
 3. Spawn up the Vagrant setup.
 
@@ -41,4 +39,5 @@ vagrant up
 
 ```
 For Identity Server - https://localhost:9443/carbon
-For Identity Server Analytics - https://localhost:9444/carbon
+For Identity Server Analytics Dashboard - https://localhost:9634/portal
+```
