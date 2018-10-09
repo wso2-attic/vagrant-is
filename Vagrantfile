@@ -21,21 +21,21 @@ require 'uri'
 require 'erb'
 
 # check whether the command is 'vagrant up'
-if ARGV[0] == 'up'
+if ARGV[0] == '--updates'
   print "Please insert your WSO2 credentials\n"
   print "Username: "
   USERNAME = STDIN.gets.chomp
   print "Password: "
   PASSWORD = STDIN.noecho(&:gets).chomp
   print "\n"
+  # generate TOKEN
+  TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 else
   # initializing USERNAME and PASSWORD
+  print "Using the Vagrant boxes with no updates...\n"
   USERNAME = ""
   PASSWORD = ""
 end
-
-# generate TOKEN
-TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 
 FILES_PATH = "./"
 DEFAULT_MOUNT = "/home/vagrant/"
@@ -51,17 +51,23 @@ Vagrant.configure(2) do |config|
     # define the virtual machine configurations
     config.vm.define server['hostname'] do |server_config|
       # define the base Vagrant box to be used
-      server_config.vm.box = server['box']
+      if ARGV[0] == '--updates'
+        server_config.vm.box = server['box']
+      else
+        server_config.vm.box = "wso2/" + server['box']
+      end
+
       # define the virtual machine host name
       server_config.vm.host_name = server['hostname']
-
-      server_config.vm.box_check_update = true
-
       # Diasbling the synched folder
       server_config.vm.synced_folder ".", "/vagrant", disabled: true
 
-      #generate the url
-      url = "https://"+TOKEN+"@vagrant.wso2.com/boxes/"+server['box']+".box"
+      if ARGV[0] == '--updates'
+        #generate the url
+        url = "https://"+TOKEN+"@vagrant.wso2.com/boxes/" + server['box'] + ".box"
+      else
+        url = "https://vagrantcloud.com/wso2/" + server['box']
+      end
 
       server_config.vm.box_url = url
 
