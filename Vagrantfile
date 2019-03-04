@@ -92,6 +92,7 @@ Vagrant.configure(2) do |config|
         vb.gui = false
         vb.customize ['modifyvm', :id, '--memory', memory]
         vb.customize ['modifyvm', :id, '--cpus', cpu]
+	vb.customize ['modifyvm', :id, '--uartmode1', 'disconnected']
       end
       if server['conf_dir']
         server_config.vm.provision "file", source: FILES_PATH + server['conf_dir'], destination: DEFAULT_MOUNT + server['conf_dir']
