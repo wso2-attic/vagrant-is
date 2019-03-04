@@ -411,7 +411,7 @@ wso2.datasources:
           jdbcUrl: 'jdbc:mysql://172.28.128.3:3306/wso2is?useSSL=false'
           username: root
           password: wso2carbon
-          driverClassName: com.mysql.jdbc.Driver
+          driverClassName: com.mysql.cj.jdbc.Driver
           maxPoolSize: 50
           idleTimeout: 60000
           validationTimeout: 30000
