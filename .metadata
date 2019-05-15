@@ -1,0 +1,212 @@
+# Copyright 2019 WSO2, Inc. (http://wso2.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License
+# -------------------------------------------------------------------------
+# command line arguments
+params:
+  wso2is: wso2is-5.8.0
+  wso2is-analytics: wso2is-analytics-5.8.0
+  existing-version: 5.7.0
+  new-version: 5.8.0
+files:
+  # identity-server
+  - file_path: identity-server/provisioner/product_provisioner.sh
+    relative_path: ~
+    file_type: txt
+    configurations:
+      - operation: replace
+        current_value: "{$arg.existing-version}"
+        new_value: "{$arg.new-version}"
+  # carbon.xml
+  - file_path: identity-server/confs/repository/conf/carbon.xml
+    relative_path: "{$arg.wso2is}/repository/conf/carbon.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "HostName"
+        value: "172.28.128.4"
+      - operation: replace
+        xpath: "MgtHostName"
+        value: "172.28.128.4"
+  # user-mgt.xml
+  - file_path: identity-server/confs/repository/conf/user-mgt.xml
+    relative_path: "{$arg.wso2is}/repository/conf/user-mgt.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "Realm/Configuration/Property[@name=\"dataSource\"]"
+        value: "jdbc/WSO2UM_DB"
+      - operation: add
+        xpath: "Realm"
+        value:
+          |
+          <UserStoreManager class="org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager">
+            <Property name="TenantManager">org.wso2.carbon.user.core.tenant.JDBCTenantManager</Property>
+            <Property name="ReadOnly">false</Property>
+            <Property name="ReadGroups">true</Property>
+            <Property name="WriteGroups">true</Property>
+            <Property name="UsernameJavaRegEx">^[\S]{3,30}$</Property>
+            <Property name="UsernameJavaScriptRegEx">^[\S]{3,30}$</Property>
+            <Property name="UsernameJavaRegExViolationErrorMsg">Username pattern policy violated</Property>
+            <Property name="PasswordJavaRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaScriptRegEx">^[\S]{5,30}$</Property>
+            <Property name="PasswordJavaRegExViolationErrorMsg">Password length should be within 5 to 30 characters</Property>
+            <Property name="RolenameJavaRegEx">^[\S]{3,30}$</Property>
+            <Property name="RolenameJavaScriptRegEx">^[\S]{3,30}$</Property>
+            <Property name="CaseInsensitiveUsername">false</Property>
+            <Property name="SCIMEnabled">false</Property>
+            <Property name="IsBulkImportSupported">false</Property>
+            <Property name="PasswordDigest">SHA-256</Property>
+            <Property name="StoreSaltedPassword">true</Property>
+            <Property name="MultiAttributeSeparator">,</Property>
+            <Property name="MaxUserNameListLength">100</Property>
+            <Property name="MaxRoleNameListLength">100</Property>
+            <Property name="UserRolesCacheEnabled">true</Property>
+            <Property name="UserNameUniqueAcrossTenants">false</Property>
+            <Property name="LeadingOrTrailingSpaceAllowedInUserName">false</Property>
+          </UserStoreManager>
+      - operation: comment
+        xpath: "Realm/UserStoreManager[@class=\"org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager\"]"
+        value: ~
+  # master-datasources.xml
+  - file_path: identity-server/confs/repository/conf/datasources/master-datasources.xml
+    relative_path: "{$arg.wso2is}/repository/conf/datasources/master-datasources.xml"
+    file_type: xml
+    configurations:
+      - operation: add
+        xpath: "datasources"
+        value:
+          |
+          <datasource>
+            <name>WSO2_UM_DB</name>
+            <description>The datasource used for registry and user manager</description>
+            <jndiConfig>
+              <name>jdbc/WSO2UM_DB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+              <configuration>
+                <url>jdbc:mysql://172.28.128.3:3306/wso2um_db?autoReconnect=true&amp;useSSL=false</url>
+                <username>root</username>
+                <password>wso2carbon</password>
+                <driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>
+                <maxActive>50</maxActive>
+                <maxWait>60000</maxWait>
+                <testOnBorrow>true</testOnBorrow>
+                <validationQuery>SELECT 1</validationQuery>
+                <validationInterval>30000</validationInterval>
+                <defaultAutoCommit>false</defaultAutoCommit>
+              </configuration>
+            </definition>
+          </datasource>
+  # identity.xml
+  - file_path: identity-server/confs/repository/conf/identity/identity.xml
+    relative_path: "{$arg.wso2is}/repository/conf/identity/identity.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "EventListeners/EventListener[@name=\"org.wso2.carbon.identity.data.publisher.application.authentication.impl.DASLoginDataPublisherImpl\"]/enable"
+        value: "true"
+      - operation: replace
+        xpath: "EventListeners/EventListener[@name=\"org.wso2.carbon.identity.data.publisher.application.authentication.impl.DASSessionDataPublisherImp\"]/enable"
+        value: "true"
+  # IsAnalytics-Publisher-wso2event-AuthenticationData.xml
+  - file_path: identity-server/confs/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-AuthenticationData.xml
+    relative_path: "{$arg.wso2is}/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-AuthenticationData.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "to/property[@name=\"receiverURL\"]"
+        value: "tcp://172.28.128.6:7612"
+  # IsAnalytics-Publisher-wso2event-RoleData.xml
+  - file_path: identity-server/confs/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-RoleData.xml
+    relative_path: "{$arg.wso2is}/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-RoleData.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "to/property[@name=\"receiverURL\"]"
+        value: "tcp://172.28.128.6:7612"
+  # IsAnalytics-Publisher-wso2event-SessionData.xml
+  - file_path: identity-server/confs/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-SessionData.xml
+    relative_path: "{$arg.wso2is}/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-SessionData.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "to/property[@name=\"receiverURL\"]"
+        value: "tcp://172.28.128.6:7612"
+  # IsAnalytics-Publisher-wso2event-UserData.xml
+  - file_path: identity-server/confs/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-UserData.xml
+    relative_path: "{$arg.wso2is}/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-UserData.xml"
+    file_type: xml
+    configurations:
+      - operation: replace
+        xpath: "to/property[@name=\"receiverURL\"]"
+        value: "tcp://172.28.128.6:7612"
+# identity-server-analytics
+  - file_path: identity-server-analytics-dashboard/provisioner/product_provisioner.sh
+    relative_path: ~
+    file_type: txt
+    configurations:
+      - operation: replace
+        current_value: "{$arg.existing-version}"
+        new_value: "{$arg.new-version}"
+  # deployment.yaml
+  - file_path: identity-server-analytics-dashboard/confs/conf/dashboard/deployment.yaml
+    relative_path: "{$arg.wso2is-analytics}/conf/dashboard/deployment.yaml"
+    file_type: "yaml"
+    configurations:
+      - operation: replace
+        xpath: "databridge.config/dataReceivers/dataReceiver[type=\"Binary\"]/properties/hostName"
+        value: "172.28.128.5"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/jdbcUrl"
+        value: "jdbc:mysql://172.28.128.3:3306/wso2is?useSSL=false"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/username"
+        value: "root"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/driverClassName"
+        value: "com.mysql.cj.jdbc.Driver"
+      - operation: replace
+        xpath: "wso2.transport.http/listenerConfigurations[id=\"default-https\"]/host"
+        value: "172.28.128.5"
+  # identity-server-analytics-worker
+  - file_path: identity-server-analytics-worker/provisioner/product_provisioner.sh
+    relative_path: ~
+    file_type: txt
+    configurations:
+      - operation: replace
+        current_value: "{$arg.existing-version}"
+        new_value: "{$arg.new-version}"
+  # deployment.yaml
+  - file_path: identity-server-analytics-worker/confs/conf/worker/deployment.yaml
+    relative_path: "{$arg.wso2is-analytics}/conf/worker/deployment.yaml"
+    file_type: yaml
+    configurations:
+      - operation: replace
+        xpath: "wso2.transport.http/listenerConfigurations[id=\"default\"]/host"
+        value: "172.28.128.6"
+      - operation: replace
+        xpath: "wso2.transport.http/listenerConfigurations[id=\"msf4j-https\"]/host"
+        value: "172.28.128.6"
+      - operation: replace
+        xpath: "databridge.config/dataReceivers/dataReceiver[type=\"Binary\"]/properties/hostName"
+        value: "172.28.128.6"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/jdbcUrl"
+        value: "jdbc:mysql://172.28.128.3:3306/wso2is?useSSL=false"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/username"
+        value: "root"
+      - operation: replace
+        xpath: "wso2.datasources/dataSources[name=\"IS_ANALYTICS_DB\"]/definition/configuration/driverClassName"
+        value: "com.mysql.cj.jdbc.Driver"
