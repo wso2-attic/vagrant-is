@@ -24,3 +24,6 @@ hs_err_pid*
 .vagrant
 .idea/
 boxes/output/*.box
+
+# Mac related
+.DS_Store
