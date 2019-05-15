@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License
 # -------------------------------------------------------------------------
+
 # command line arguments
 params:
   wso2is: wso2is-5.8.0
@@ -19,6 +20,14 @@ params:
   existing-version: 5.7.0
   new-version: 5.8.0
 files:
+  # README.md
+  - file_path: README.md
+    relative_path: ~
+    file_type: txt
+    configurations:
+      - operation: replace
+        current_value: "v5.7.0.1"
+        new_value: "v5.8.0.1"
   # identity-server
   - file_path: identity-server/provisioner/product_provisioner.sh
     relative_path: ~
@@ -78,6 +87,17 @@ files:
       - operation: comment
         xpath: "Realm/UserStoreManager[@class=\"org.wso2.carbon.user.core.ldap.ReadWriteLDAPUserStoreManager\"]"
         value: ~
+  # identity-event.properties
+  - file_path: identity-server/confs/repository/conf/identity/identity-event.properties
+    relative_path: "{$arg.wso2is}/repository/conf/identity/identity-event.properties"
+    file_type: txt
+    configurations:
+      - operation: replace
+        current_value: "analyticsLoginDataPublisher.enable=false"
+        new_value: "analyticsLoginDataPublisher.enable=true"
+      - operation: replace
+        current_value: "analyticsSessionDataPublisher.enable=false"
+        new_value: "analyticsSessionDataPublisher.enable=true"
   # master-datasources.xml
   - file_path: identity-server/confs/repository/conf/datasources/master-datasources.xml
     relative_path: "{$arg.wso2is}/repository/conf/datasources/master-datasources.xml"
@@ -151,7 +171,7 @@ files:
       - operation: replace
         xpath: "to/property[@name=\"receiverURL\"]"
         value: "tcp://172.28.128.6:7612"
-# identity-server-analytics
+  # identity-server-analytics-dashboard
   - file_path: identity-server-analytics-dashboard/provisioner/product_provisioner.sh
     relative_path: ~
     file_type: txt
