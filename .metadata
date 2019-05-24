@@ -130,17 +130,6 @@ files:
               </configuration>
             </definition>
           </datasource>
-  # identity.xml
-  - file_path: identity-server/confs/repository/conf/identity/identity.xml
-    relative_path: "{$arg.wso2is}/repository/conf/identity/identity.xml"
-    file_type: xml
-    configurations:
-      - operation: replace
-        xpath: "EventListeners/EventListener[@name=\"org.wso2.carbon.identity.data.publisher.application.authentication.impl.DASLoginDataPublisherImpl\"]/enable"
-        value: "true"
-      - operation: replace
-        xpath: "EventListeners/EventListener[@name=\"org.wso2.carbon.identity.data.publisher.application.authentication.impl.DASSessionDataPublisherImp\"]/enable"
-        value: "true"
   # IsAnalytics-Publisher-wso2event-AuthenticationData.xml
   - file_path: identity-server/confs/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-AuthenticationData.xml
     relative_path: "{$arg.wso2is}/repository/deployment/server/eventpublishers/IsAnalytics-Publisher-wso2event-AuthenticationData.xml"
