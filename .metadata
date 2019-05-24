@@ -19,6 +19,8 @@ params:
   wso2is-analytics: wso2is-analytics-5.8.0
   existing-version: 5.7.0
   new-version: 5.8.0
+  readme-existing-version: v5.7.0.1
+  readme-new-version: v5.8.0.1
 files:
   # README.md
   - file_path: README.md
@@ -26,8 +28,8 @@ files:
     file_type: txt
     configurations:
       - operation: replace
-        current_value: "v5.7.0.1"
-        new_value: "v5.8.0.1"
+        current_value: "{$arg.readme-existing-version}"
+        new_value: "{$arg.readme-new-version}"
   # identity-server
   - file_path: identity-server/provisioner/product_provisioner.sh
     relative_path: ~
