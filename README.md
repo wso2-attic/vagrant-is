@@ -1,3 +1,9 @@
+#### ⚠️ DISCLAIMER
+
+Use these artefacts as a reference to build your deployment artefacts. Existing artefacts only developed to demonstrate a reference deployment and should not be used as is in production
+
+------------------------------------------------------------------
+
 # Vagrantfile for WSO2 Identity Server
 
 In order to use Vagrant boxes, you will need an active subscription from WSO2 since the Vagrant boxes hosted at vagrant.wso2.com contains the latest updates and fixes to WSO2 Identity Server. You can sign up for a Free Trial Subscription [here](https://wso2.com/free-trial-subscription).
